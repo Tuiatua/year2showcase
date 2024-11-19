@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 Palindrome Checker
+  form(method="POST" action="/")
+    label(for="userText") Enter Your Text Here
+    br
+    input(type="type" id="userText" name="userText" value=`${phrase}`)
+    br
+    br
+    button(type="submit") Submit
+    p=`reversed text = ${entered}`
+    if message
+      p=message
+  br
+  br
+  h3 Examples of Palindromes
+  p civic, kayak, level
