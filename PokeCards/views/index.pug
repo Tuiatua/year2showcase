@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  include mixins/pokeCard
+  div.container
+    each poke in pokes
+      +pokeCard(poke)
