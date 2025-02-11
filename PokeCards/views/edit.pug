@@ -1,30 +1,5 @@
 extends layout
 
 block content
-    div
-        div Edit PokeCard
-            form
-            div.name
-                label()
-                input()
-            div.colorone
-                label()
-                input()
-            div.colortwo
-                label()
-                input()
-            div.hp
-            div.element
-            div.picture
-            div.elementcostone
-            div.elementcosttwo
-            div.movenameone
-            div.movenametwo
-            div.dmgone
-            div.dmgtwo
-            div.elementw
-            div.elementr
-            div.button-row
-                a.button.cancel(href='/') Cancel
-                a.button.delete(href=`/delete/${poke.id}`) Delete
-                button.button.save(type='submit') Submit
+    include mixins/pokeForm
+    +pokeForm(poke, `/edit/${poke.id}`, 'edit', 'Edit Poke')

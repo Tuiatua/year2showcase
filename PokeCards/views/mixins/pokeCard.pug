@@ -27,3 +27,5 @@ mixin pokeCard(poke)
             img.elementW(src=poke.elementw)
             img.elementR(src=poke.elementr)
             img.elementT(src=poke.element)
+        div.editStuff
+            a(href=`/edit/${poke.id}`) Edit Card

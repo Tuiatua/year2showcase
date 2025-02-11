@@ -1,0 +1,60 @@
+mixin pokeCard(poke, action, mode, title)
+
+    div.form-panel
+        div.header= title
+            form(action= action method='post')
+                div.form-input
+                    label(for='N') Name:
+                    input(type='text' id='N' name='N' value=poke.name)
+                div.form-input
+                    label(for='colorone') Primary Color:
+                    input(type='text' id='colorone' name='colorone' value=poke.colorone)
+                div.form-input
+                    label(for='colortwo') Secondary Color:
+                    input(type='text' id='colortwo' name='colortwo' value=poke.colortwo)
+                div.form-input
+                    label(for='hp') Hp:
+                    input(type='text' id='hp' name='hp' value=poke.hp)
+                div.form-input
+                    label(for='element') Element Type:
+                    select(id='element' name='element' autocomplete='off')
+                        each element in elements
+                            option(value=element selected = (element ===poke.element)) #{element.name}
+                div.form-input
+                    label(for='picture') Picture:
+                    input(type='text' id='picture' name='picture' value=poke.picture)
+                div.form-input
+                    label(for='ecostone') Element Cost One:
+                    input(type='text' id='ecostone' name='ecostone' value=poke.elementcostone)
+                div.form-input
+                    label(for='ecosttwo') Element Cost Two:
+                    input(type='text' id='ecosttwo' name='ecosttwo' value=poke.elementcosttwo)
+                div.form-input
+                    label(for='movenameone') Move Name One:
+                    input(type='text' id='movenameone' name='movenameone' value=poke.movenameone)
+                div.form-input
+                    label(for='movenametwo') Move Name Two:
+                    input(type='text' id='movenametwo' name='movenametwo' value=poke.movenametwo)
+                div.form-input
+                    label(for='dmgone') Damage One:
+                    input(type='text' id='dmgone' name='dmgone' value=poke.dmgone)
+                div.form-input
+                    label(for='dmgtwo') Damage Two:
+                    input(type='text' id='dmgtwo' name='dmgtwo' value=poke.dmgtwo)
+                div.form-input
+                    label(for='elementw') Element Weakness:
+                    select(id='elementw' name='elementw' autocomplete='off')
+                        each element in elements
+                            option(value=element selected = (element === poke.element)) #{element.name}
+                div.form-input
+                    label(for='elementr')
+                    select(id='elementr' name='elementr' autocomplete='off')
+                        each element in elements
+                            option(value=element selected = (element === poke.element)) #{element.name}
+                div.button-row
+                    a.button.cancel(href='/') Cancel
+                    if (mode==='edit')
+                    br
+                    a.button.delete(href=`/delete/${poke.id}`) Delete
+                    br
+                    button.button.save(type='submit') Submit
