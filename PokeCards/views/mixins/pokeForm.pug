@@ -1,11 +1,11 @@
-mixin pokeCard(poke, action, mode, title)
+mixin pokeForm(poke, action, type, title)
 
     div.form-panel
         div.header= title
             form(action= action method='post')
                 div.form-input
-                    label(for='N') Name:
-                    input(type='text' id='N' name='N' value=poke.name)
+                    label(for='name') Name:
+                    input(type='text' id='name' name='name' value=poke.name)
                 div.form-input
                     label(for='colorone') Primary Color:
                     input(type='text' id='colorone' name='colorone' value=poke.colorone)
@@ -19,16 +19,16 @@ mixin pokeCard(poke, action, mode, title)
                     label(for='element') Element Type:
                     select(id='element' name='element' autocomplete='off')
                         each element in elements
-                            option(value=element selected = (element ===poke.element)) #{element.name}
+                            option(value=element.url selected = (element ===poke.element)) #{element.name}
                 div.form-input
                     label(for='picture') Picture:
                     input(type='text' id='picture' name='picture' value=poke.picture)
                 div.form-input
-                    label(for='ecostone') Element Cost One:
-                    input(type='text' id='ecostone' name='ecostone' value=poke.elementcostone)
+                    label(for='elementcostone') Element Cost One:
+                    input(type='text' id='elementcostone' name='elementcostone' value=poke.elementcostone)
                 div.form-input
-                    label(for='ecosttwo') Element Cost Two:
-                    input(type='text' id='ecosttwo' name='ecosttwo' value=poke.elementcosttwo)
+                    label(for='elementcosttwo') Element Cost Two:
+                    input(type='text' id='elementcosttwo' name='elementcosttwo' value=poke.elementcosttwo)
                 div.form-input
                     label(for='movenameone') Move Name One:
                     input(type='text' id='movenameone' name='movenameone' value=poke.movenameone)
@@ -45,16 +45,16 @@ mixin pokeCard(poke, action, mode, title)
                     label(for='elementw') Element Weakness:
                     select(id='elementw' name='elementw' autocomplete='off')
                         each element in elements
-                            option(value=element selected = (element === poke.element)) #{element.name}
+                            option(value=element.url selected = (element === poke.element)) #{element.name}
                 div.form-input
-                    label(for='elementr')
+                    label(for='elementr') Element Resistance
                     select(id='elementr' name='elementr' autocomplete='off')
                         each element in elements
-                            option(value=element selected = (element === poke.element)) #{element.name}
+                            option(value=element.url selected = (element === poke.element)) #{element.name}
                 div.button-row
                     a.button.cancel(href='/') Cancel
-                    if (mode==='edit')
-                    br
-                    a.button.delete(href=`/delete/${poke.id}`) Delete
+                    if (type ==='edit')
+                        br
+                        a.button.delete(href=`/delete/${poke.id}`) Delete
                     br
                     button.button.save(type='submit') Submit

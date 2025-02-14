@@ -2,6 +2,11 @@ const {Poke, Element} = require('../models');
 
 module.exports.viewAll = async function(req, res, next) {
     const pokes = await Poke.findAll();
+    let searchElement = 'All';
+    let searchElements = ['All'];
+    for(let i = 0; i < poke.element.length; i++) {
+        searchElements.push(element[i])
+    }
     res.render('index', {pokes});
 }
 
@@ -15,7 +20,7 @@ module.exports.renderEditForm = async function(req, res, next) {
 }
 
 module.exports.updatePokemon = async function(req, res, next) {
-    await poke.update(
+    await Poke.update(
         {
             name: req.body.name,
             colorone: req.body.colorone,
@@ -25,12 +30,12 @@ module.exports.updatePokemon = async function(req, res, next) {
             picture: req.body.picture,
             elementcostone: req.body.elementcostone,
             elementcosttwo: req.body.elementcosttwo,
-            movenameone: req.body.name,
-            movenametwo: req.body.name,
-            dmgone: req.body.name,
-            dmgtwo: req.body.name,
-            elementw: req.body.name,
-            elementr: req.body.name
+            movenameone: req.body.movenameone,
+            movenametwo: req.body.movenametwo,
+            dmgone: req.body.dmgone,
+            dmgtwo: req.body.dmgtwo,
+            elementw: req.body.elementw,
+            elementr: req.body.elementr,
         },
             {
                 where: {
@@ -42,7 +47,7 @@ module.exports.updatePokemon = async function(req, res, next) {
 }
 
 module.exports.deletePokemon = async function(req, res, next) {
-    await poke.destroy(
+    await Poke.destroy(
         {
             where: {
                 id: req.params.id
@@ -51,3 +56,46 @@ module.exports.deletePokemon = async function(req, res, next) {
     });
     res.redirect('/');
 }
+
+module.exports.renderAddForm = async function(req, res, next) {
+    const elements = await Element.findAll();
+    const poke = {
+        name: '',
+        colorone: '',
+        colortwo: '',
+        hp: '',
+        element: '',
+        picture: '',
+        elementcostone: 1,
+        elementcosttwo: 2,
+        movenameone: '',
+        movenametwo: '',
+        dmgone: '',
+        dmgtwo: '',
+        elementw: '',
+        elementr: ''
+    }
+    res.render('add', {poke, elements});
+}
+
+module.exports.addPoke = async function(req, res, next) {
+    await Poke.create(
+        {
+            colorone: req.body.colorone,
+            colortwo: req.body.colortwo,
+            name: req.body.name,
+            hp: req.body.hp,
+            element: req.body.element,
+            picture: req.body.picture,
+            elementcostone: req.body.elementcostone,
+            elementcosttwo: req.body.elementcosttwo,
+            movenameone: req.body.movenameone,
+            movenametwo: req.body.movenametwo,
+            dmgone: req.body.dmgone,
+            dmgtwo: req.body.dmgtwo,
+            elementw: req.body.elementw,
+            elementr: req.body.elementr,
+        });
+    res.redirect('/');
+}
+
