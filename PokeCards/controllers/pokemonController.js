@@ -2,11 +2,6 @@ const {Poke, Element} = require('../models');
 
 module.exports.viewAll = async function(req, res, next) {
     const pokes = await Poke.findAll();
-    let searchElement = 'All';
-    let searchElements = ['All'];
-    for(let i = 0; i < poke.element.length; i++) {
-        searchElements.push(element[i])
-    }
     res.render('index', {pokes});
 }
 
