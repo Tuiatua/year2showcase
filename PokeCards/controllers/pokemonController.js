@@ -1,8 +1,28 @@
 const {Poke, Element} = require('../models');
 
 module.exports.viewAll = async function(req, res, next) {
-    const pokes = await Poke.findAll();
-    res.render('index', {pokes});
+    //Get All elements
+    let elements = await Element.findAll();
+    let categories = ['All'];
+    let selectedCategory = 'All';
+
+    //Create a list to filter from
+    for(let Element in elements) {
+        categories.push(Element);
+    }
+    let pokes;
+    let searchCategory = req.query.element || 'All';
+    if (searchCategory === 'All') {
+        pokes = await Poke.findAll();
+    } else {
+        pokes = await Poke.findAll({
+            where: {
+                elementid: searchCategory
+            }
+        });
+    }
+
+    res.render('index', {pokes, elements, categories, selectedCategory});
 }
 
 module.exports.renderEditForm = async function(req, res, next) {
@@ -68,7 +88,7 @@ module.exports.renderAddForm = async function(req, res, next) {
         dmgone: '',
         dmgtwo: '',
         elementw: '',
-        elementr: ''
+        elementr: '',
     }
     res.render('add', {poke, elements});
 }

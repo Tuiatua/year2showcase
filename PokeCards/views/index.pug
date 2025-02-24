@@ -3,6 +3,14 @@ extends layout
 block content
   include mixins/pokeCard
   div.container
+    form(action='/' method='get')
+      div.form-input
+        label(for='element') Element
+        select(id='element' name='element' autocomplete='off')
+          each element in categories
+            option(value=element selected = (element === selectedCategory)) #{element}
+      button.button.save(type='submit') Filter
+  div.container
     div.add-button-row
       a.button.save(href='/add') Add Poke
   div.container
