@@ -51,6 +51,10 @@ mixin pokeForm(poke, action, type, title)
                     select(id='elementr' name='elementr' autocomplete='off')
                         each element in elements
                             option(value=element.url selected = (element === poke.element)) #{element.name}
+                div.form-input
+                    label(for='elementid') Corresponding Element ID:
+                    input(type='text' id='elementid' name='elementid' value=poke.elementid)
+                p 1 = fairy, 2 = poison, 3 = dark, 4 = normal, 5 = fighting, 6 = ghost, 7 = water, 8 = fire, 0 = nothing
                 div.button-row
                     a.button.cancel(href='/') Cancel
                     if (type ==='edit')

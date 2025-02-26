@@ -51,6 +51,7 @@ module.exports.updatePokemon = async function(req, res, next) {
             dmgtwo: req.body.dmgtwo,
             elementw: req.body.elementw,
             elementr: req.body.elementr,
+            elementid: req.body.elementid
         },
             {
                 where: {
@@ -89,6 +90,7 @@ module.exports.renderAddForm = async function(req, res, next) {
         dmgtwo: '',
         elementw: '',
         elementr: '',
+        elementid: ''
     }
     res.render('add', {poke, elements});
 }
@@ -110,6 +112,7 @@ module.exports.addPoke = async function(req, res, next) {
             dmgtwo: req.body.dmgtwo,
             elementw: req.body.elementw,
             elementr: req.body.elementr,
+            elementid: req.body.elementid
         });
     res.redirect('/');
 }
