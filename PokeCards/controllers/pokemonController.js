@@ -5,6 +5,7 @@ module.exports.viewAll = async function(req, res, next) {
     let elements = await Element.findAll();
     let categories = ['All'];
     let selectedCategory = 'All';
+    let searchRandom = req.query.random || false;
 
     //Create a list to filter from
     for(let Element in elements) {
@@ -21,8 +22,12 @@ module.exports.viewAll = async function(req, res, next) {
             }
         });
     }
+    if (pokes.length > 0 && searchRandom) {
+        let randomIndex = getRandomInt(pokes.length);
+        pokes = [pokes[randomIndex]];
+    }
 
-    res.render('index', {pokes, elements, categories, selectedCategory});
+    res.render('index', {pokes, elements, categories, selectedCategory, searchRandom});
 }
 
 module.exports.renderEditForm = async function(req, res, next) {
@@ -117,3 +122,6 @@ module.exports.addPoke = async function(req, res, next) {
     res.redirect('/');
 }
 
+function getRandomInt(max){
+    return Math.floor(Math.random() * max);
+}
