@@ -1,0 +1,13 @@
+mixin reviewPanel(review)
+
+    div.review-panel
+        div.review-panel-header
+            div=review.customer_name
+            div.rating-row
+                -for (let i=1; i<= review.rating; i++)
+                    span.star!= "&#x2b50"
+            div.review-actions
+                a(href=`/reviews/edit/${review.id}`) Edit Review
+                a(href=`/reviews/delete/${review.id}`) Delete Review
+        div.subject=review.subject
+        div.review-content=review.description

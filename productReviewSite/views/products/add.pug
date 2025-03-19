@@ -2,4 +2,5 @@ extends ../layout
 
 block content
         include ../mixins/productForm
-        +productForm(product, categories, '/products/add', '/products/')
+        div.content
+                +productForm(product, categories, '/products/add', '/products/')
